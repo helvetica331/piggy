@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Головоломка: Соедини провода</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #1a1a2e;
+            color: white;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        .game-wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px;
+            gap: 10px;
+        }
+        
+        h2 {
+            font-size: clamp(16px, 4vw, 24px);
+            text-align: center;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            flex-shrink: 0;
+        }
+        
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 0;
+        }
+        
+        #gameCanvas {
+            border: 3px solid #FFD700;
+            border-radius: 12px;
+            background: #0a0a1a;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+            max-width: 100%;
+            max-height: 100%;
+            touch-action: none;
+        }
+        
+        #status {
+            font-size: clamp(14px, 3.5vw, 20px);
+            font-weight: bold;
+            text-align: center;
+            min-height: 30px;
+            flex-shrink: 0;
+            padding: 5px;
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+            padding: 10px 0;
+        }
+        
+        .game-btn {
+            padding: clamp(10px, 3vw, 15px) clamp(20px, 5vw, 30px);
+            font-size: clamp(14px, 3.5vw, 18px);
+            font-weight: bold;
+            color: white;
+            border: 3px solid rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+            flex-shrink: 0;
+        }
+        
+        .game-btn:hover {
+            filter: brightness(1.15);
+            transform: translateY(-2px) scale(1.02);
+        }
+        
+        .game-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        #resetBtn {
+            background: linear-gradient(180deg, #FFA726, #E65100);
+            border-color: rgba(100, 50, 0, 0.4);
+        }
+        
+        #returnBtn {
+            background: linear-gradient(180deg, #66BB6A, #388E3C);
+            border-color: rgba(0, 80, 0, 0.4);
+            display: none;
+        }
+        
+        #backBtn {
+            background: linear-gradient(180deg, #FF6B6B, #c0392b);
+            border-color: rgba(100, 0, 0, 0.4);
+        }
+        
+        /* Мобильная адаптация */
+        @media (max-width: 480px) {
+            .game-wrapper {
+                padding: 5px;
+                gap: 5px;
+            }
+            
+            h2 {
+                font-size: 16px;
+                padding: 0 10px;
+            }
+            
+            .canvas-container {
+                max-width: 100%;
+            }
+            
+            #gameCanvas {
+                border-width: 2px;
+            }
+            
+            #status {
+                font-size: 14px;
+                min-height: 25px;
+            }
+            
+            .button-container {
+                gap: 10px;
+                padding: 5px 0;
+            }
+            
+            .game-btn {
+                padding: 10px 15px;
+                font-size: 14px;
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-height: 700px) and (orientation: landscape) {
+            .game-wrapper {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            h2 {
+                width: 100%;
+                order: 1;
+            }
+            
+            .canvas-container {
+                order: 2;
+                height: calc(100vh - 120px);
+                max-width: 60%;
+            }
+            
+            #status {
+                order: 3;
+                width: 100%;
+            }
+            
+            .button-container {
+                order: 4;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-wrapper">
+        <h2>🔌 Соедини провода от розетки к ПК</h2>
+        
+        <div class="canvas-container">
+            <canvas id="gameCanvas"></canvas>
+        </div>
+        
+        <div id="status">Загрузка...</div>
+        
+        <div class="button-container">
+            <button id="resetBtn" class="game-btn" onclick="resetGame()">🔄 Заново</button>
+            <button id="returnBtn" class="game-btn" onclick="returnToLevel()">✅ Вернуться к свинке</button>
+            <button id="backBtn" class="game-btn" onclick="goBackWithoutWin()">🔙 Назад (сдаться)</button>
+        </div>
+    </div>
+    
+    <script src="js/game-logic.js"></script>
+</body>
+</html>

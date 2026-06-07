@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6a11cb">
+    <meta name="HandheldFriendly" content="true">
+    <title>Тестовая карусель</title>
+    <style>
+        /* Основные стили для тела документа */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            /* Градиентный фон */
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            height: 100vh; /* Изменяем с min-height на height */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Убираем прокрутку всего документа */
+        }
+
+
+        /* Стили для верхней большой карты */
+        .top-large-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Добавляем относительное позиционирование для правильного размещения стрелок */
+            max-width: 1000px;
+            padding: 15px; /* Увеличиваем внутренние отступы */
+            margin: 80px auto; /* Увеличиваем верхний отступ, чтобы немного опустить блок */
+            flex: 0 0 auto; /* Фиксируем размер */
+            /* Добавляем стеклянный фон */
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-height: 660px; /* Устанавливаем минимальную высоту, чтобы вместить высоту картинки плюс отступы */
+        }
+
+
+        /* Стили для большой карты */
+        .large-card {
+            width: 900px; /* Увеличиваем ширину с 800px до 900px */
+            height: 630px; /* Увеличиваем высоту с 560px до 630px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            /* Граница для лучшей видимости */
+            border: 3px solid #333;
+            border-radius: 15px;
+            /* Тень для выделения элемента */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background-color: #B0B0B0;
+            overflow: hidden;
+        }
+
+        /* Стили для изображения внутри большой карты */
+        .large-card img {
+            width: 100%;
+            height: 100%;
+            object-position: center;
+            border-radius: 12px;
+            padding: 2px;
+            /* Защита от копирования */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Стили для стрелок */
+        .arrow-btn {
+            width: 45px;
+            height: 630px; /* Устанавливаем высоту стрелок такой же, как у блока с картинками */
+            border-radius: 8px; /* Уменьшаем скругление углов */
+            border: none;
+            background: rgba(52, 152, 219, 0.7);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.25s ease; /* Добавляем transition для анимации */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative; /* Используем относительное позиционирование */
+            z-index: 2; /* Устанавливаем z-индекс выше, чем у большой карты */
+            backdrop-filter: blur(3px); /* Уменьшаем эффект размытия */
+            -webkit-backdrop-filter: blur(3px); /* Уменьшаем эффект размытия для.webkit-браузеров */
+        }
+
+        /* Анимация при наведении на стрелки */
+        .arrow-btn:hover {
+            filter: brightness(1.15); /* Увеличиваем яркость при наведении */
+            transform: scale(1.02); /* Легкое увеличение при наведении */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2); /* Улучшаем тень при наведении */
+        }
+
+        /* Стили для левой стрелки снаружи */
+        .left-arrow-outside {
+            margin-right: 15px; /* Отступ справа от левой стрелки */
+        }
+
+        /* Стили для правой стрелки снаружи */
+        .right-arrow-outside {
+            margin-left: 15px; /* Отступ слева от правой стрелки */
+        }
+
+        /* Стили для секции с кнопкой возврата */
+        .return-section {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: -70px; /* Увеличиваем отрицательный отступ для точного прилегания к блоку */
+            margin-bottom: 0px; /* Убираем отступ снизу */
+        }
+
+        /* Стили для кнопки возврата на всю ширину */
+        .full-width-back-button {
+            width: 1000px; /* Ширина такая же, как у контейнера .top-large-card */
+            height: 50px;
+            background: rgba(221, 221, 221, 0.7);
+            border: none;
+            border-radius: 12px; /* сглаживание */
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            backdrop-filter: blur(10px); /* размытие */
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* затенение */
+            transition: all 0.25s ease; /* добавляем переход для анимации */
+            z-index: 3;
+        }
+
+        /* Анимация при наведении на кнопку возврата */
+        .full-width-back-button:hover {
+            filter: brightness(1.15); /* увеличиваем яркость при наведении */
+            transform: scale(1.02); /* легкое увеличение при наведении */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2); /* усиливаем тень при наведении */
+        }
+
+        /* Кнопка возврата */
+
+        /* Адаптивные стили для мобильных устройств */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+
+            .top-large-card {
+                margin: 10px auto;
+                padding: 10px;
+                max-width: 95%;
+            }
+
+            .large-card {
+                width: 100%;
+                height: 400px; /* Уменьшаем высоту для мобильных устройств */
+            }
+
+            .arrow-btn {
+                width: 35px;
+                height: 400px; /* Соответствует высоте большой карты */
+                border-radius: 6px; /* Уменьшаем сглаживание */
+            }
+
+            .large-card img {
+                border-radius: 10px; /* Уменьшаем сглаживание */
+            }
+
+            .full-width-back-button {
+                width: 95%; /* Используем процентную ширину для мобильных */
+                height: 45px;
+                font-size: 16px;
+            }
+        }
+
+        /* Дополнительные стили для планшетов */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .top-large-card {
+                margin: 20px auto;
+                padding: 12px;
+                max-width: 95%;
+            }
+
+            .large-card {
+                width: 100%;
+                height: 500px; /* Уменьшаем высоту для планшетов */
+            }
+
+            .arrow-btn {
+                width: 40px;
+                height: 500px; /* Соответствует высоте большой карты */
+            }
+
+            .full-width-back-button {
+                width: 95%;
+            }
+        }
+
+        /* Для очень маленьких экранов */
+        @media (max-width: 480px) {
+            .large-card {
+                height: 300px; /* Еще меньше для маленьких экранов */
+            }
+
+            .arrow-btn {
+                height: 300px;
+                width: 30px; /* Ещё уже для экономии места */
+            }
+
+            .full-width-back-button {
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Верхняя секция с большой картой и стрелками -->
+    <div class="top-large-card">
+        <button class="arrow-btn left-arrow-outside" onclick="prevSlide()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        
+        <div class="large-card-wrapper">
+            <div class="large-card" id="largeCard">
+                <img src="details/referens/Дизайн ИКНТ.png" alt="Большая карта 1" id="largeCardImage" 
+                     oncontextmenu="return false;" 
+                     ondragstart="return false;" 
+                     onselectstart="return false;"
+                     onclick="goToSubjectPage()" />
+            </div>
+        </div>
+        
+        <button class="arrow-btn right-arrow-outside" onclick="nextSlide()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Кнопка возврата под всем блоком -->
+    <div class="return-section">
+        <button class="full-width-back-button" onclick="goBack()">Вернуться назад</button>
+    </div>
+
+    <!-- Подключение внешнего скрипта -->
+    <script src="js/levels-carousel-scripts.js"></script>
+</body>
+</html>
