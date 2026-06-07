@@ -1,0 +1,448 @@
+/* ============================================
+   ПЕРЕМЕННЫЕ И СБРОС СТИЛЕЙ
+============================================ */
+:root {
+    --primary: #4ECDC4;
+    --secondary: #FF6B6B;
+    --accent: #FFD700;
+    --bg: #1a1a2e;
+    --text: #fff;
+    --text-dark: #333;
+    --text-muted: #666;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --card-bg-dark: rgba(30, 30, 50, 0.95);
+    
+    --border-teal: #4ECDC4;
+    --bubble-blue: #4169E1;
+    --overlay: rgba(0, 0, 0, 0.7);
+    
+    --grad-btn-play: linear-gradient(180deg, #66BB6A, #388E3C);
+    --grad-btn-play-dark: linear-gradient(180deg, #2E7D32, #1B5E20);
+    --grad-btn-settings: linear-gradient(180deg, #42A5F5, #1565C0);
+    --grad-btn-settings-dark: linear-gradient(180deg, #1565C0, #0D47A1);
+    --grad-btn-about: linear-gradient(180deg, #FFA726, #E65100);
+    --grad-btn-about-dark: linear-gradient(180deg, #E65100, #BF360C);
+    
+    --shadow-sm: rgba(0, 0, 0, 0.3);
+    --shadow-md: rgba(0, 0, 0, 0.4);
+    --shadow-lg: rgba(0, 0, 0, 0.5);
+    --glow: rgba(78, 205, 196, 0.5);
+    
+    --transition: 0.3s ease;
+    --z-base: 0;
+    --z-ui: 10;
+    --z-popup: 1000;
+}
+
+*, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    background: #000;
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.main-frame-bg, .inner-frame-bg, .character-img, .about-character {
+    -webkit-user-drag: none; user-select: none; pointer-events: none;
+}
+
+/* ============================================
+   ГЛАВНЫЙ КОНТЕЙНЕР
+============================================ */
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    max-width: 1800px;
+    max-height: 1000px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 🔥 Центрируем персонажа и кнопки по вертикали */
+    align-items: center;
+    gap: 15px; /* 🔥 Маленький отступ, чтобы кнопки были ПРЯМО под блоком с персом */
+    border: 5px solid var(--accent);
+    border-radius: 40px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: var(--z-ui);
+}
+
+.main-frame-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: var(--z-base);
+}
+
+/* ============================================
+   1. БЛОК ЗАГОЛОВКА (Теперь абсолютный, чтобы не мешать центрированию)
+============================================ */
+.title-block {
+    position: absolute; /* 🔥 Вынимаем из потока */
+    top: 10px;          /* 🔥 Ровно 10px от верхнего края */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    padding: 10px 40px;
+    border-radius: 30px;
+    border: 3px solid var(--accent);
+    text-align: center;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    z-index: var(--z-ui);
+}
+
+.title-block h1 {
+    color: white;
+    font-size: clamp(20px, 4vw, 36px);
+    letter-spacing: 3px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+.title-block .subtitle {
+    color: var(--primary);
+    font-size: clamp(12px, 2vw, 16px);
+    margin-top: 6px;
+    font-family: 'Courier New', monospace;
+}
+
+/* ============================================
+   2. БЛОК ПЕРСОНАЖА
+============================================ */
+.character-block {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 40vh;
+    min-height: 240px;
+    max-height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Персонаж стоит на нижней линии */
+    border: 6px solid var(--border-teal);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 30px var(--glow), inset 0 0 40px rgba(78, 205, 196, 0.1);
+    background: linear-gradient(180deg, rgba(78, 205, 196, 0.15) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(78, 205, 196, 0.1) 100%);
+    z-index: var(--z-ui);
+    flex-shrink: 0;
+    
+    /* 🔥 Сдвигаем всю группу (персонаж + кнопки) чуть ниже */
+    margin-top: 16vh; /* Попробуй 5vh, 60px или 8vh, если нужно ещё ниже */
+}
+
+.inner-frame-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: var(--z-base);
+}
+
+.character-wrapper {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Дублируем для надёжности */
+    margin-bottom: 0; /* 🔥 Строго 0, чтобы стоял на линии, а не вылезал */
+    cursor: pointer;
+}
+
+.character-img {
+    width: 100%; 
+    max-width: 115%; 
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px var(--shadow-sm));
+    /* Анимации и transition полностью удалены */
+}
+
+/* ============================================
+РЕЧЕВОЙ ПУЗЫРЬ
+============================================ */
+.speech-bubble {
+    position: absolute;
+    bottom: 100%; /* 🔥 Прижимаем к верху персонажа */
+    left: 25%;
+    transform: translateX(-50%); /* 🔥 Центрируем по горизонтали */
+    background: #fff;
+    border: 3px solid var(--bubble-blue);
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 14px; /* 🔥 Уменьшили шрифт */
+    font-weight: bold;
+    color: #000;
+    white-space: normal; /* 🔥 Разрешаем перенос текста */
+    max-width: 220px; /* 🔥 Ограничиваем ширину */
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    z-index: 10; /* 🔥 Выше персонажа (было 4) */
+    margin-bottom: 15px; /* 🔥 Отступ от головы свиньи */
+    box-shadow: 0 4px 10px var(--shadow-sm);
+    word-wrap: break-word; /* 🔥 Перенос длинных слов */
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* 🔥 Хвостик внизу пузыря */
+    left: 50%;
+    transform: translateX(-50%); /* 🔥 Центрируем хвостик */
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: var(--bubble-blue) transparent;
+}
+
+.speech-bubble p {
+    margin: 0;
+    line-height: 1.3; /* 🔥 Межстрочный интервал */
+}
+
+/* Пузырь свинки — над свинкой слева */
+.piggy-bubble {
+    position: absolute;
+    bottom: 35%; /* Над персонажем */
+    left: 22%;   /* Чуть правее свинки */
+    transform: translateX(-50%);
+    z-index: 100 !important;
+    display: block !important;
+}
+
+/* Пузырь калькулятора — над калькулятором справа */
+.calc-bubble {
+    position: absolute;
+    bottom: 35%;
+    right: 17%;  /* Чуть левее калькулятора */
+    transform: translateX(-50%);
+    z-index: 100 !important;
+    display: block !important;
+}
+
+/* Скрываем старые стили пузыря */
+.character .speech-bubble {
+    display: none !important;
+}
+
+/* ============================================
+   3. БЛОК КНОПОК
+============================================ */
+.buttons-block {
+    display: flex;
+    flex-direction: column; /* 🔥 Бургер: друг под другом */
+    align-items: center;
+    gap: 12px; /* Отступ между самими кнопками */
+    z-index: var(--z-popup);
+    flex-shrink: 0;
+}
+
+.menu-btn {
+    width: 280px; height: 65px;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    border-radius: 16px; cursor: pointer;
+    font-size: 24px; font-weight: bold; color: white;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--transition);
+    text-shadow: 1px 1px 3px var(--shadow-sm);
+    box-shadow: 0 6px 20px var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative; overflow: hidden; flex-shrink: 0;
+}
+
+.menu-btn img { max-height: 100%; max-width: 100%; object-fit: contain; }
+
+.menu-btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 25px var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.menu-btn:active { transform: translateY(0) scale(0.98); }
+
+.btn-play { background: var(--grad-btn-play); border-color: rgba(0, 80, 0, 0.4); }
+.btn-settings { background: var(--grad-btn-settings); border-color: rgba(0, 50, 100, 0.4); }
+.btn-about { background: var(--grad-btn-about); border-color: rgba(100, 50, 0, 0.4); }
+
+/* ============================================
+   ВСПОМОГАТЕЛЬНЫЕ ЭКРАНЫ
+============================================ */
+.screen {
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    background: var(--overlay); backdrop-filter: blur(5px);
+    display: none; z-index: var(--z-popup);
+    justify-content: center; align-items: center; flex-direction: column;
+}
+
+.screen.active {
+    display: flex; animation: screenSlideIn 0.3s ease;
+}
+
+@keyframes screenSlideIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.screen-content {
+    background: var(--card-bg); color: var(--text-dark);
+    padding: 30px; border-radius: 20px; border: 3px solid var(--accent);
+    max-width: 500px; width: 90%; text-align: center;
+    box-shadow: 0 10px 40px var(--shadow-lg);
+}
+
+.screen-content h2 { margin-bottom: 20px; color: var(--text-dark); font-size: 28px; }
+.settings-panel { text-align: left; }
+
+.setting-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 15px; margin-bottom: 12px;
+    background: #000; border: 2px solid var(--accent);
+    border-radius: 12px; color: var(--text);
+}
+
+.setting-item label { font-size: 15px; font-weight: bold; color: var(--accent); }
+.setting-item input[type="range"] { width: 100px; accent-color: var(--accent); cursor: pointer; }
+.setting-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent); cursor: pointer; }
+
+.reset-progress-btn {
+    width: 100%; padding: 12px; font-size: 16px; font-weight: bold;
+    color: var(--secondary); background: #000;
+    border: 2px solid var(--secondary); border-radius: 10px;
+    cursor: pointer; margin-top: 15px; transition: all var(--transition);
+}
+
+.reset-progress-btn:hover {
+    background: var(--secondary); color: #000; transform: translateY(-2px);
+}
+
+.about-panel p { font-size: 16px; margin-bottom: 10px; line-height: 1.5; }
+.about-version { margin-top: 20px; font-size: 14px !important; opacity: 0.7; }
+
+.back-btn {
+    margin-top: 20px; padding: 12px 30px; font-size: 18px; font-weight: bold;
+    background: linear-gradient(135deg, var(--secondary), #e55a5a); color: white;
+    border: none; border-radius: 10px; cursor: pointer; transition: all var(--transition);
+}
+
+.back-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4); }
+
+/* ============================================
+   ТЁМНАЯ ТЕМА
+============================================ */
+body.dark-theme .main-container { background: rgba(0, 0, 0, 0.85); }
+body.dark-theme .title-block { background: rgba(0, 0, 0, 0.9); }
+body.dark-theme .character-block {
+    box-shadow: 0 0 30px rgba(78, 205, 196, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(180deg, rgba(78, 205, 196, 0.05) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(78, 205, 196, 0.05) 100%);
+}
+body.dark-theme .screen-content { background: var(--card-bg-dark); color: #eee; border-color: #444; }
+body.dark-theme .screen-content h2 { color: #eee; }
+body.dark-theme .speech-bubble { background: #2a2a4a; color: #eee; border-color: #555; }
+body.dark-theme .speech-bubble::after { border-color: #555 transparent; }
+body.dark-theme .btn-play { background: var(--grad-btn-play-dark); }
+body.dark-theme .btn-settings { background: var(--grad-btn-settings-dark); }
+body.dark-theme .btn-about { background: var(--grad-btn-about-dark); }
+
+/* ============================================
+   ОТКЛЮЧЕНИЕ АНИМАЦИЙ
+============================================ */
+body.no-animations *, body.no-animations *::before, body.no-animations *::after {
+    animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important;
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+============================================ */
+@media (max-width: 768px) {
+    .main-container {
+        padding-top: 10px;
+        padding-bottom: env(safe-area-inset-bottom, 15px);
+        border-radius: 0;
+        border: none;
+        gap: 10px; /* Еще плотнее на мобильных */
+    }
+
+    .title-block { padding: 8px 20px; width: 100%; max-width: 320px; }
+    .title-block h1 { font-size: 1.6rem; letter-spacing: 2px; }
+    .title-block .subtitle { font-size: 0.9rem; }
+
+    .character-block {
+        width: 90%;
+        height: 32vh;
+        min-height: 200px;
+        border-width: 4px;
+    }
+
+    .character-wrapper {
+        max-width: 85%;
+        margin-bottom: 0; /* Гарантируем, что на мобильном тоже стоит на линии */
+    }
+
+    .speech-bubble {
+        top: 5px; right: 5px;
+        font-size: 13px; padding: 5px 10px;
+    }
+
+    .buttons-block {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .menu-btn {
+        width: 90%;
+        max-width: 280px;
+        height: 52px;
+        font-size: 19px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container { padding-top: 10px; gap: 8px; }
+    .title-block { padding: 6px 15px; }
+    .title-block h1 { font-size: 1.4rem; }
+    
+    .character-block { height: 28vh; min-height: 180px; }
+    
+    .speech-bubble {
+        top: 2px; right: 2px;
+        font-size: 12px; padding: 4px 8px;
+        border-radius: 12px;
+    }
+
+    .menu-btn {
+        width: 100%;
+        height: 48px;
+        font-size: 17px;
+        border-radius: 12px;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .main-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+        padding-top: 0;
+    }
+
+    .title-block { width: 100%; margin-top: 0; padding: 4px 15px; order: 1; }
+    .title-block h1 { font-size: 1.2rem; }
+    
+    .character-block {
+        width: 35%; height: 85vh; order: 2; max-height: none; margin: 0;
+    }
+    
+    .buttons-block {
+        width: 30%; order: 3;
+    }
+    
+    .menu-btn {
+        width: 100%; height: 40px; font-size: 14px;
+    }
+}
