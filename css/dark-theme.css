@@ -1,0 +1,257 @@
+/* ============================================
+ТЁМНАЯ ТЕМА ДЛЯ ВСЕХ СТРАНИЦ
+============================================ */
+
+/* Общие стили для тёмной темы */
+body.dark-theme {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e0e0e0;
+}
+
+body.dark-theme * {
+    color: inherit;
+}
+
+body.dark-theme h1, 
+body.dark-theme h2, 
+body.dark-theme h3 {
+    color: #a0a0ff;
+}
+
+body.dark-theme p {
+    color: #d0d0d0;
+}
+
+/* Кнопки в тёмной теме */
+body.dark-theme button,
+body.dark-theme .btn {
+    background: linear-gradient(135deg, #4a4a6a 0%, #5a5a7a 100%);
+    color: #ffffff;
+    border-color: #6a6a8a;
+    box-shadow: 0 4px 15px rgba(160, 160, 255, 0.2);
+}
+
+body.dark-theme button:hover,
+body.dark-theme .btn:hover {
+    background: linear-gradient(135deg, #5a5a7a 0%, #6a6a8a 100%);
+    box-shadow: 0 6px 20px rgba(160, 160, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+body.dark-theme button:active {
+    transform: translateY(0);
+}
+
+/* Ссылки в тёмной теме */
+body.dark-theme a {
+    color: #7aa2ff;
+}
+
+body.dark-theme a:hover {
+    color: #a0c0ff;
+}
+
+/* ============================================
+СТРАНИЦА КАРУСЕЛИ УРОВНЕЙ (levels-carousel.html)
+============================================ */
+
+body.dark-theme .level-card {
+    background: rgba(30, 30, 50, 0.95);
+    border-color: #4a4a6a;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .level-card:hover {
+    box-shadow: 0 8px 30px rgba(160, 160, 255, 0.3);
+    border-color: #6a6a8a;
+}
+
+body.dark-theme .level-card.locked {
+    background: rgba(20, 20, 35, 0.8);
+    border-color: #3a3a5a;
+    opacity: 0.6;
+}
+
+body.dark-theme .level-title {
+    color: #a0a0ff;
+}
+
+body.dark-theme .level-description {
+    color: #b0b0b0;
+}
+
+/* ============================================
+СТРАНИЦА ДИАЛОГОВ (IKNT-dialog.html)
+============================================ */
+
+body.dark-theme .dialog-container {
+    background: rgba(30, 30, 50, 0.95);
+    border-color: #4a4a6a;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-theme .dialog-text {
+    color: #e0e0e0;
+    background: rgba(20, 20, 40, 0.8);
+    border-color: #5a5a7a;
+}
+
+body.dark-theme .character-name {
+    color: #a0a0ff;
+}
+
+body.dark-theme .dialog-btn {
+    background: linear-gradient(135deg, #4a4a6a 0%, #5a5a7a 100%);
+    border-color: #6a6a8a;
+}
+
+body.dark-theme .dialog-btn:hover {
+    background: linear-gradient(135deg, #5a5a7a 0%, #6a6a8a 100%);
+}
+
+/* ============================================
+СТРАНИЦА ГОЛОВОЛОМКИ (task-IKNT.html)
+============================================ */
+
+body.dark-theme .puzzle-container {
+    background: rgba(30, 30, 50, 0.95);
+    border-color: #4a4a6a;
+}
+
+body.dark-theme .puzzle-grid {
+    background: rgba(20, 20, 40, 0.8);
+    border-color: #5a5a7a;
+}
+
+body.dark-theme .wire-block {
+    background: rgba(74, 74, 106, 0.8);
+    border-color: #8a8aaa;
+}
+
+body.dark-theme .wire-block:hover {
+    background: rgba(90, 90, 122, 0.9);
+    box-shadow: 0 0 15px rgba(160, 160, 255, 0.4);
+}
+
+body.dark-theme .wire-block.connected {
+    background: rgba(78, 205, 196, 0.3);
+    border-color: #4ECDC4;
+    box-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+}
+
+body.dark-theme .puzzle-controls {
+    background: rgba(30, 30, 50, 0.9);
+    border-color: #4a4a6a;
+}
+
+body.dark-theme .puzzle-title {
+    color: #a0a0ff;
+}
+
+body.dark-theme .puzzle-instruction {
+    color: #b0b0b0;
+}
+
+/* Кнопки управления головоломкой */
+body.dark-theme .btn-reset,
+body.dark-theme .btn-back,
+body.dark-theme .btn-complete {
+    background: linear-gradient(135deg, #4a4a6a 0%, #5a5a7a 100%);
+    border-color: #6a6a8a;
+}
+
+body.dark-theme .btn-complete {
+    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+    border-color: #388E3C;
+}
+
+body.dark-theme .btn-complete:disabled {
+    background: linear-gradient(135deg, #3a3a5a 0%, #4a4a6a 100%);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ============================================
+АДАПТИВНОСТЬ ДЛЯ ТЁМНОЙ ТЕМЫ
+============================================ */
+
+@media (max-width: 768px) {
+    body.dark-theme .dialog-container,
+    body.dark-theme .puzzle-container {
+        background: rgba(25, 25, 45, 0.98);
+    }
+}
+
+/* ============================================
+ТЁМНАЯ ТЕМА ДЛЯ IKNT-dialog.html
+Используем РЕАЛЬНЫЕ классы из level-1.css
+============================================ */
+
+/* 1. Фон всей сцены (кабинет ИКНТ) */
+body.dark-theme .game-scene {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+}
+
+/* 2. Пузыри с текстом (Свинка и Калькулятор) */
+body.dark-theme .lvl-bubble {
+    background: #2a2a4a !important;
+    color: #e0e0e0 !important;
+    border-color: #5a5a7a !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-theme .lvl-bubble::after {
+    border-color: #5a5a7a transparent transparent transparent !important;
+}
+
+/* 3. Карточки внутри оверлеев (Головоломка и Инфо об ИКНТ) */
+body.dark-theme .puzzle-content,
+body.dark-theme .info-card {
+    background: rgba(30, 30, 50, 0.95) !important;
+    color: #e0e0e0 !important;
+    border-color: #4a4a6a !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Текст внутри карточек */
+body.dark-theme .info-card h2 {
+    color: #FFD700 !important; /* Золотой для заголовка ИКНТ */
+}
+
+body.dark-theme .info-card h3 {
+    color: #4ECDC4 !important; /* Бирюзовый для подзаголовка */
+}
+
+body.dark-theme .info-card p {
+    color: #d0d0d0 !important;
+}
+
+body.dark-theme .puzzle-content h2 {
+    color: #a0a0ff !important;
+}
+
+body.dark-theme .puzzle-content p {
+    color: #d0d0d0 !important;
+}
+
+/* 4. Кнопки (Начать головоломку, Вернуться на карту, Далее) */
+body.dark-theme .start-puzzle-btn,
+body.dark-theme .back-btn,
+body.dark-theme .action-ui button {
+    background: linear-gradient(135deg, #4a4a6a 0%, #5a5a7a 100%) !important;
+    color: #ffffff !important;
+    border-color: #6a6a8a !important;
+}
+
+body.dark-theme .start-puzzle-btn:hover,
+body.dark-theme .back-btn:hover,
+body.dark-theme .action-ui button:hover {
+    background: linear-gradient(135deg, #5a5a7a 0%, #6a6a8a 100%) !important;
+    box-shadow: 0 8px 20px rgba(160, 160, 255, 0.3) !important;
+}
+
+/* 5. Оверлеи (затемнение фона при открытии карточек) */
+body.dark-theme .puzzle-overlay,
+body.dark-theme .info-overlay {
+    background: rgba(0, 0, 0, 0.9) !important;
+}

@@ -1,0 +1,290 @@
+/* ============================================
+СЦЕНА
+============================================ */
+.game-scene {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: #2a3a6e;
+}
+
+.scene-layer {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+}
+
+.layer-bg { inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.layer-posters { top: 8%; left: 50%; transform: translateX(-50%); width: 70%; max-width: 900px; z-index: 2; }
+.layer-back-pcs { bottom: 48%; left: 50%; transform: translateX(-50%); width: 85%; max-width: 1100px; z-index: 3; }
+
+/* Главный стол — по центру комнаты, выше */
+.main-pc {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    max-width: 550px;
+    z-index: 50;
+    cursor: pointer;
+    pointer-events: auto !important;
+}
+
+.pc-img { width: 100%; height: auto; display: block; }
+
+.monitor-hint {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: hintBounce 1s infinite;
+    display: none;
+    pointer-events: none;
+    z-index: 6;
+    width: 60px;
+    height: 60px;
+}
+
+.hint-arrow {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
+}
+
+/* ============================================
+ПЕРСОНАЖИ
+============================================ */
+.lvl-character {
+    position: absolute !important;
+    bottom: 2% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    z-index: 60 !important; /* Выше стола, чтобы не перекрывался */
+    pointer-events: none !important;
+}
+
+.piggy {
+    left: 0% !important;
+}
+
+.piggy img {
+    width: 780px !important;  /* Нормальный размер, не 300% */
+    height: auto !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6)) !important;
+}
+
+.calculator {
+    display: none !important;
+    right: 5% !important;
+}
+
+.calculator.visible {
+    display: flex !important;
+    animation: calcEnter 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.calculator img {
+    width: 280px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6)) !important;
+}
+
+@keyframes calcEnter {
+    from { transform: translateX(60px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* ============================================
+ПУЗЫРИ (закреплены за персонажами)
+============================================ */
+.lvl-bubble {
+    position: absolute !important;
+    bottom: 85% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: #fff !important;
+    border: 3px solid #4169E1 !important;
+    border-radius: 20px !important;
+    padding: 12px 18px !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #000 !important;
+    white-space: normal !important;
+    max-width: 320px !important;
+    min-width: 120px !important;
+    text-align: center !important;
+    font-family: 'Courier New', monospace !important;
+    z-index: 100 !important;
+    margin-bottom: 15px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+    word-wrap: break-word !important;
+    line-height: 1.4 !important;
+    pointer-events: none !important;
+}
+
+.lvl-bubble::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-width: 12px 10px 0 !important;
+    border-style: solid !important;
+    border-color: #4169E1 transparent transparent transparent !important;
+}
+
+.lvl-bubble p {
+    margin: 0 !important;
+    line-height: 1.4 !important;
+}
+
+.calculator .lvl-bubble {
+    bottom: 110% !important;
+    max-width: 360px !important;
+    min-width: 320px !important;
+}
+
+.game-scene .speech-bubble {
+    display: none !important;
+}
+
+/* ============================================
+UI
+============================================ */
+.action-ui {
+    position: absolute;
+    bottom: 9vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 70;
+}
+
+.puzzle-overlay, .info-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.puzzle-content, .info-card {
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    padding: 30px;
+    border-radius: 20px;
+    border: 3px solid #FFD700;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.info-card h2 { color: #FFD700; font-size: 32px; margin-bottom: 5px; }
+.info-card h3 { color: #4ECDC4; font-size: 18px; margin-bottom: 20px; }
+.info-card p { font-size: 16px; line-height: 1.5; margin-bottom: 25px; }
+
+
+
+@keyframes hintBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-12px); }
+}
+
+/* ============================================
+МОБИЛЬНАЯ АДАПТАЦИЯ (один блок, без дублей)
+============================================ */
+@media (max-width: 1080px) {
+    .layer-posters { width: 65%; top: 5%; }
+    .layer-back-pcs { bottom: 45%; width: 85%; }
+    
+    .main-pc { bottom: 28%; width: 50%; max-width: 350px; }
+    
+    .piggy { left: -8% !important; }
+    .piggy img { width: 620px !important; bottom: 12vh !important; }
+    
+    .calculator { right: 2% !important; }
+    .calculator img { width: 180px !important; bottom: 12vh !important; }
+    
+    .lvl-bubble {
+        max-width: 220px !important;
+        font-size: 13px !important;
+        padding: 8px 12px !important;
+    }
+    
+    .action-ui { bottom: 12vh !important; }
+    .menu-btn { width: 200px !important; height: 50px !important; font-size: 18px !important; }
+}
+
+
+@media (max-width: 768px) {
+    .layer-posters { width: 35%; top: 5%; }
+    .layer-back-pcs { bottom: 45%; width: 95%; }
+    
+    .main-pc { bottom: 8%; width: 50%; max-width: 350px; }
+    
+    .piggy { left: 2% !important; bottom: 12vh !important; }
+    .piggy img { width: 220px !important; bottom: 12vh !important; }
+    
+    .calculator { right: 2% !important; bottom: 12vh !important; }
+    .calculator img { width: 180px !important; bottom: 12vh !important; }
+    
+    .lvl-bubble {
+        max-width: 220px !important;
+        font-size: 13px !important;
+        padding: 8px 12px !important;
+    }
+    
+    .action-ui { bottom: 12vh !important; }
+    .menu-btn { width: 200px !important; height: 50px !important; font-size: 18px !important; }
+}
+
+@media (max-width: 480px) {
+    .piggy {
+        left: 0% !important;  /* 🔥 Свинья прижата к левому краю */
+        width: 140px !important;
+        height: 190px !important;
+        bottom: 12vh !important;
+    }
+    .piggy img { left: -2%; width: 360px !important; bottom: 12vh !important; }
+    
+    .calculator {
+        right: 1% !important; bottom: 12vh !important;
+    }
+    
+    .calculator img {
+        width: 130px !important;
+        height: 180px !important;
+        bottom: 12vh !important;
+    }
+
+    .main-pc {
+        bottom: 28% !important;
+        width: 60% !important;
+    }
+    .layer-posters { width: 85%; top: 25%; }
+    .layer-back-pcs { bottom: 48%; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1100px; z-index: 3; }
+
+    .calculator .lvl-bubble {
+        bottom: 110% !important;
+        max-width: 360px !important;
+        min-width: 120px !important;
+    }
+
+    .lvl-bubble {
+        bottom: 90% !important;
+        max-width: 180px !important;
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+    }
+    
+    .menu-btn { width: 170px !important; height: 45px !important; font-size: 16px !important; }
+}

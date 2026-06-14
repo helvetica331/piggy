@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Уровень 1: Кабинет ИКНТ</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/level-1.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
+</head>
+<body>
+
+    <div class="game-scene">
+        <!-- СЛОЙ 1: Фон класса -->
+        <img src="details/Фон.png" alt="Фон" class="scene-layer layer-bg" onerror="this.style.display='none'">
+        
+        <!-- СЛОЙ 2: Листовочки на стене -->
+        <img src="details/Листовочки.png" alt="Листовочки" class="scene-layer layer-posters" onerror="this.style.display='none'">
+        
+        <!-- СЛОЙ 3: Компьютеры сзади -->
+        <img src="details/Компы сзади.png" alt="Компы сзади" class="scene-layer layer-back-pcs" onerror="this.style.display='none'">
+        
+        <!-- СЛОЙ 4: Главный компьютер -->
+        <div class="main-pc" id="main-pc">
+            <img src="details/Компьютер выкл.png" alt="Компьютер выключен" class="pc-img pc-off" id="pc-off" onerror="this.style.display='none'">
+            <img src="details/Компьютер вкл.png" alt="Компьютер включен" class="pc-img pc-on" id="pc-on" style="display: none;" onerror="this.style.display='none'">
+
+            <!-- Заменяем эмодзи на картинку -->
+            <div class="monitor-hint" id="monitor-hint">
+                <img src="details/->.png" alt="Стрелка вниз" class="hint-arrow" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <!-- СЛОЙ 5: Свинка -->
+        <div class="lvl-character piggy" id="piggy">
+            <div class="lvl-bubble" id="piggy-bubble">
+                <p id="piggy-text">Привет! Я Свинка.</p>
+            </div>
+            <img src="details/Happy2.png" alt="Свинка" id="piggy-sprite" onerror="this.style.display='none'">
+        </div>
+
+        <!-- СЛОЙ 6: Калькулятор -->
+        <div class="lvl-character calculator" id="calculator">
+            <div class="lvl-bubble" id="calc-bubble" style="display: none;">
+                <p id="calc-text">ух ты....</p>
+            </div>
+            <img src="details/calculator.png" alt="Калькулятор" onerror="this.style.display='none'">
+        </div>
+
+        <!-- Кнопка -->
+        <div class="action-ui">
+            <button class="menu-btn btn-play" id="next-btn" onclick="nextStep()">Далее</button>
+        </div>
+
+        <!-- Оверлей головоломки -->
+        <div class="puzzle-overlay" id="puzzle-overlay">
+            <div class="puzzle-content">
+                <h2>🔌 Головоломка: Соедини провода</h2>
+                <p>Перенаправь электричество к системному блоку!</p>
+                <button class="menu-btn btn-settings" onclick="startPuzzle()">Начать головоломку</button>
+            </div>
+        </div>
+
+        <!-- Инфо-панель -->
+        <div class="info-overlay" id="info-overlay">
+            <div class="info-card">
+                <h2>ИКНТ</h2>
+                <h3>Институт компьютерных наук и технологий</h3>
+                <p>Здесь учат создавать будущее. Программирование, искусственный интеллект, кибербезопасность — всё это изучают на нашем факультете.</p>
+                <button class="menu-btn btn-about" onclick="window.location.href='levels-carousel.html'">Вернуться на карту</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dialog.js"></script>
+    <script src="js/common.js"></script>
+</body>
+</html>
