@@ -77,7 +77,8 @@ function goToSubjectPage() {
             window.location.href = 'IKNT-dialog.html'; // Страница химии
             break;
         case 1:
-            window.location.href = 'task-biology.html'; // Страница биологии
+            // Выводим сообщение для 3-й картинки (предпоследней)
+            alert("Извините, ещё не готов...");
             break;
         case 2:
             // Выводим сообщение для 3-й картинки (предпоследней)
@@ -114,4 +115,23 @@ document.addEventListener('keydown', (e) => {
 // Инициализация карусели при загрузке окна
 window.addEventListener('load', () => {
     updateCarousel();
+});
+
+// Применяем настройки на всех страницах
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        const settings = JSON.parse(localStorage.getItem('smartPiggy_settings')) || {};
+        
+        // Применяем тёмную тему
+        if (settings.darkTheme) {
+            document.body.classList.add('dark-theme');
+        }
+        
+        // Применяем отключение анимаций
+        if (!settings.animations) {
+            document.body.classList.add('no-animations');
+        }
+    } catch (e) {
+        console.error('Ошибка загрузки настроек:', e);
+    }
 });

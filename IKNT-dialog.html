@@ -4,29 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Уровень 1: Кабинет ИКНТ</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/level-1.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/level-1.css">
+    <link rel="stylesheet" href="css/dark-theme.css">
 </head>
 <body>
 
     <div class="game-scene">
         <!-- СЛОЙ 1: Фон класса -->
-        <img src="./details/Фон.png" alt="Фон" class="scene-layer layer-bg" onerror="this.style.display='none'">
+        <img src="details/Фон.png" alt="Фон" class="scene-layer layer-bg" onerror="this.style.display='none'">
         
         <!-- СЛОЙ 2: Листовочки на стене -->
-        <img src="./details/Листовочки.png" alt="Листовочки" class="scene-layer layer-posters" onerror="this.style.display='none'">
+        <img src="details/Листовочки.png" alt="Листовочки" class="scene-layer layer-posters" onerror="this.style.display='none'">
         
         <!-- СЛОЙ 3: Компьютеры сзади -->
-        <img src="./details/Компы сзади.png" alt="Компы сзади" class="scene-layer layer-back-pcs" onerror="this.style.display='none'">
+        <img src="details/Компы сзади.png" alt="Компы сзади" class="scene-layer layer-back-pcs" onerror="this.style.display='none'">
         
         <!-- СЛОЙ 4: Главный компьютер -->
         <div class="main-pc" id="main-pc">
-            <img src="./details/Компьютер выкл.png" alt="Компьютер выключен" class="pc-img pc-off" id="pc-off" onerror="this.style.display='none'">
-            <img src="./details/Компьютер вкл.png" alt="Компьютер включен" class="pc-img pc-on" id="pc-on" style="display: none;" onerror="this.style.display='none'">
+            <img src="details/Компьютер выкл.png" alt="Компьютер выключен" class="pc-img pc-off" id="pc-off" onerror="this.style.display='none'">
+            <img src="details/Компьютер вкл.png" alt="Компьютер включен" class="pc-img pc-on" id="pc-on" style="display: none;" onerror="this.style.display='none'">
 
             <!-- Заменяем эмодзи на картинку -->
             <div class="monitor-hint" id="monitor-hint">
-                <img src="./details/->.png" alt="Стрелка вниз" class="hint-arrow" onerror="this.style.display='none'">
+                <img src="details/->.png" alt="Стрелка вниз" class="hint-arrow" onerror="this.style.display='none'">
             </div>
         </div>
 
@@ -35,7 +36,7 @@
             <div class="lvl-bubble" id="piggy-bubble">
                 <p id="piggy-text">Привет! Я Свинка.</p>
             </div>
-            <img src="./details/Happy2.png" alt="Свинка" id="piggy-sprite" onerror="this.style.display='none'">
+            <img src="details/Happy2.png" alt="Свинка" id="piggy-sprite" onerror="this.style.display='none'">
         </div>
 
         <!-- СЛОЙ 6: Калькулятор -->
@@ -43,7 +44,7 @@
             <div class="lvl-bubble" id="calc-bubble" style="display: none;">
                 <p id="calc-text">ух ты....</p>
             </div>
-            <img src="./details/calculator.png" alt="Калькулятор" onerror="this.style.display='none'">
+            <img src="details/calculator.png" alt="Калькулятор" onerror="this.style.display='none'">
         </div>
 
         <!-- Кнопка -->
@@ -71,9 +72,7 @@
         </div>
     </div>
 
-    <audio id="snd-error" src="./details/snd_error.mp3"></audio>
-    <audio id="snd-pc-on" src="./details/snd_pc_on.mp3"></audio>
-
-    <script src="./js/dialog.js"></script>
+    <script src="js/dialog.js"></script>
+    <script src="js/common.js"></script>
 </body>
 </html>

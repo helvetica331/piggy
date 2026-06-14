@@ -428,3 +428,22 @@ loadSprites(() => {
     resetGame();
     gameLoop();
 });
+
+// Применяем настройки на всех страницах
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        const settings = JSON.parse(localStorage.getItem('smartPiggy_settings')) || {};
+        
+        // Применяем тёмную тему
+        if (settings.darkTheme) {
+            document.body.classList.add('dark-theme');
+        }
+        
+        // Применяем отключение анимаций
+        if (!settings.animations) {
+            document.body.classList.add('no-animations');
+        }
+    } catch (e) {
+        console.error('Ошибка загрузки настроек:', e);
+    }
+});

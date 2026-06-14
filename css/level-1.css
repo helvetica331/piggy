@@ -159,7 +159,7 @@ UI
 ============================================ */
 .action-ui {
     position: absolute;
-    bottom: 3vh;
+    bottom: 9vh;
     left: 50%;
     transform: translateX(-50%);
     z-index: 70;
@@ -192,6 +192,8 @@ UI
 .info-card h3 { color: #4ECDC4; font-size: 18px; margin-bottom: 20px; }
 .info-card p { font-size: 16px; line-height: 1.5; margin-bottom: 25px; }
 
+
+
 @keyframes hintBounce {
     0%, 100% { transform: translateX(-50%) translateY(0); }
     50% { transform: translateX(-50%) translateY(-12px); }
@@ -207,10 +209,10 @@ UI
     .main-pc { bottom: 28%; width: 50%; max-width: 350px; }
     
     .piggy { left: -8% !important; }
-    .piggy img { width: 620px !important; }
+    .piggy img { width: 620px !important; bottom: 12vh !important; }
     
     .calculator { right: 2% !important; }
-    .calculator img { width: 180px !important; }
+    .calculator img { width: 180px !important; bottom: 12vh !important; }
     
     .lvl-bubble {
         max-width: 220px !important;
@@ -218,7 +220,7 @@ UI
         padding: 8px 12px !important;
     }
     
-    .action-ui { bottom: 2vh !important; }
+    .action-ui { bottom: 12vh !important; }
     .menu-btn { width: 200px !important; height: 50px !important; font-size: 18px !important; }
 }
 
@@ -229,11 +231,11 @@ UI
     
     .main-pc { bottom: 8%; width: 50%; max-width: 350px; }
     
-    .piggy { left: 2% !important; }
-    .piggy img { width: 220px !important; }
+    .piggy { left: 2% !important; bottom: 12vh !important; }
+    .piggy img { width: 220px !important; bottom: 12vh !important; }
     
-    .calculator { right: 2% !important; }
-    .calculator img { width: 180px !important; }
+    .calculator { right: 2% !important; bottom: 12vh !important; }
+    .calculator img { width: 180px !important; bottom: 12vh !important; }
     
     .lvl-bubble {
         max-width: 220px !important;
@@ -241,7 +243,7 @@ UI
         padding: 8px 12px !important;
     }
     
-    .action-ui { bottom: 2vh !important; }
+    .action-ui { bottom: 12vh !important; }
     .menu-btn { width: 200px !important; height: 50px !important; font-size: 18px !important; }
 }
 
@@ -250,16 +252,18 @@ UI
         left: 0% !important;  /* 🔥 Свинья прижата к левому краю */
         width: 140px !important;
         height: 190px !important;
+        bottom: 12vh !important;
     }
-    .piggy img { left: -2%; width: 360px !important; }
+    .piggy img { left: -2%; width: 360px !important; bottom: 12vh !important; }
     
     .calculator {
-        right: 0% !important;  /* Калькулятор прижат к правому краю */
+        right: 1% !important; bottom: 12vh !important;
     }
     
     .calculator img {
         width: 130px !important;
         height: 180px !important;
+        bottom: 12vh !important;
     }
 
     .main-pc {

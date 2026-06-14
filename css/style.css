@@ -346,6 +346,9 @@ body.dark-theme .btn-play { background: var(--grad-btn-play-dark); }
 body.dark-theme .btn-settings { background: var(--grad-btn-settings-dark); }
 body.dark-theme .btn-about { background: var(--grad-btn-about-dark); }
 
+
+
+
 /* ============================================
    ОТКЛЮЧЕНИЕ АНИМАЦИЙ
 ============================================ */
@@ -382,8 +385,10 @@ body.no-animations *, body.no-animations *::before, body.no-animations *::after 
     }
 
     .speech-bubble {
-        top: 5px; right: 5px;
-        font-size: 13px; padding: 5px 10px;
+        top: -15px; right: 5px;
+        /*font-size: 1px;*/
+        padding: 15px 10px;
+        max-width: 150px; /* 🔥 Ограничиваем ширину */
     }
 
     .buttons-block {
@@ -405,12 +410,6 @@ body.no-animations *, body.no-animations *::before, body.no-animations *::after 
     .title-block h1 { font-size: 1.4rem; }
     
     .character-block { height: 28vh; min-height: 180px; }
-    
-    .speech-bubble {
-        top: 2px; right: 2px;
-        font-size: 12px; padding: 4px 8px;
-        border-radius: 12px;
-    }
 
     .menu-btn {
         width: 100%;
